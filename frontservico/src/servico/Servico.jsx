@@ -1,6 +1,7 @@
 import "./Servico.css";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function Servico() {
   const [servico, setServico] = useState({
@@ -15,6 +16,11 @@ function Servico() {
 
   const [servicos, setServicos] = useState([]);
   const [atualizar, setAtualizar] = useState();
+  const navigate = useNavigate();
+
+  function goTo(go) {
+    navigate(go);
+  }
 
   useEffect(() => {
     buscarTodos();
@@ -59,14 +65,12 @@ function Servico() {
   function handleSubmit(event) {
     event.preventDefault();
     if (servico.id === undefined) {
-      console.log("inserir");
       axios
         .post("http://localhost:8080/api/servico/", servico)
         .then((result) => {
           setAtualizar(result);
         });
     } else {
-      console.log("alterar");
       axios
         .put("http://localhost:8080/api/servico/", servico)
         .then((result) => {
@@ -74,18 +78,6 @@ function Servico() {
         });
     }
     limpar();
-  }
-
-  function excluir(id) {
-    axios.delete("http://localhost:8080/api/servico/" + id).then((result) => {
-      setAtualizar(result);
-    });
-  }
-
-  function cancelar(id) {
-    axios.post("http://localhost:8080/api/servico/" + id).then((result) => {
-      setAtualizar(result);
-    });
   }
 
   return (
@@ -169,27 +161,17 @@ function Servico() {
             value="Cadastrar"
             className="btn btn-success"
           ></input>
+          &nbsp;&nbsp;
+          <button
+            onClick={() => goTo("/table")}
+            type="button"
+            className="btn btn-primary"
+          >
+            Listar todos
+          </button>
         </div>
       </form>
-      <hr /> <hr />
-      <button onClick={buscarTodos} type="button" className="btn btn-primary">
-        Listar Todos
-      </button>
-      <button
-        onClick={buscarPagamentosPendente}
-        type="button"
-        className="btn btn-secondary"
-      >
-        Serviços com pagamento pendente
-      </button>
-      <button
-        onClick={buscarCancelados}
-        type="button"
-        className="btn btn-success"
-      >
-        Serviços cancelados
-      </button>
-      <table className="table">
+      {/* <table className="table table-striped">
         <thead>
           <tr>
             <th scope="col">Nome</th>
@@ -236,7 +218,7 @@ function Servico() {
             </tr>
           ))}
         </tbody>
-      </table>
+      </table> */}
     </div>
   );
 }

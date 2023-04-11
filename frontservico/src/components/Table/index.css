@@ -1,0 +1,14 @@
+.Titulo{
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.Titulo button{
+    margin-right: 10px;
+}
+
+.pagination{
+    display: flex;
+    justify-content: center;
+}

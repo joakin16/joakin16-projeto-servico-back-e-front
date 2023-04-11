@@ -1,8 +1,8 @@
 import "./App.css";
-import Servico from "./servico/Servico";
+import RoutesApp from "./Routes";
 
 function App() {
-  return <Servico />;
+  return <RoutesApp />;
 }
 
 export default App;

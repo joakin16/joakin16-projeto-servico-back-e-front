@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-BackservicoApplication<backservico>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.servico.backservico.BackservicoApplication",
+            "projectName": "backservico",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
